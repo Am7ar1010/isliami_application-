@@ -1,5 +1,6 @@
 import 'package:application_islami/ui/teps/quran%20tep/items_suraName.dart';
 import 'package:application_islami/ui/teps/quran%20tep/sura_Items.dart';
+import 'package:application_islami/ui/teps/quran%20tep/sura_details.dart';
 import 'package:flutter/material.dart';
 
 class QuranView extends StatelessWidget {
@@ -41,9 +42,17 @@ class QuranView extends StatelessWidget {
           flex: 7,
           child: ListView.builder(
             itemCount: 114,
-            itemBuilder: (context, index) => SuraItems(
-                suraName: ItemsSuraName.suraNames[index],
-                suraNumber: "${index + 1}"),
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, SuraDetails.routName,
+                    arguments: SuraDetailsFiles(
+                        detailsSuraName: ItemsSuraName.suraNames[index],
+                        detailsSuraNumber: "${index + 1}"));
+              },
+              child: SuraItems(
+                  suraName: ItemsSuraName.suraNames[index],
+                  suraNumber: "${index + 1}"),
+            ),
           ),
         ),
       ],
